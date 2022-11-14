@@ -1,12 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
-  <TITLE> Bùi Phương </TITLE>
+  <TITLE> Bé Mi </TITLE>
   <META NAME="Generator" CONTENT="EditPlus">
   <META NAME="Author" CONTENT="">
   <META NAME="Keywords" CONTENT="">
   <META NAME="Description" CONTENT="">
- 
    
   <style>
   html, body {
@@ -46,7 +45,7 @@ canvas {
 #pinkboard:before, #pinkboard:after {
   content: '';
   position: absolute;
-  background: #FF5CA4;
+  background: #FFB6C1;
   width: 100px;
   height: 160px;
   border-top-left-radius: 50px;
@@ -81,13 +80,54 @@ canvas {
     transform: scale(1);
   }
 }
+.btnMusic {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 #FFB6C1;
+  transition: 0.3s;
+  background-color: #FFB6C1;
+  color: #f8e7ea;
+  border-width: 0px;
+  position: absolute;
+  top: -30;
+  right: 30;
+}
   </style>
  </HEAD>
  
  <BODY>
    <div class="box">
       <canvas id="pinkboard"></canvas>
+      <audio  id="playAudio"  loop autoplay ><source src="music.mp3" type="audio/mp3"></audio>
+      <button id="btnMusic" class="btnMusic">Mở nhạc</button>
    </div>
+   
+   <script>
+    var myAudio = document.getElementById("playAudio");
+    var isPlaying = false;
+
+    function togglePlay() {
+      isPlaying ? myAudio.pause() : myAudio.play();
+    };
+
+    myAudio.onplaying = function() {
+      isPlaying = true;
+      document.getElementById('btnMusic').innerText = 'Tắt nhạc';
+
+      document.getElementById('btnMusic').style.backgroundColor = '#827171';
+    };
+    myAudio.onpause = function() {
+      isPlaying = false;
+      document.getElementById('btnMusic').innerText = 'Mở nhạc';
+      document.getElementById('btnMusic').style.backgroundColor = '#FFB6C1';
+    };
+    window.onload = (event) => {
+      document.getElementById('btnMusic').addEventListener('click', function() {
+        togglePlay();
+      });
+    };
+    </script>
   <script>
   /*
  * Settings
@@ -272,7 +312,7 @@ var ParticlePool = (function() {
     }
     context.closePath();
     // create the fill
-    context.fillStyle = '#FF5CA4';
+    context.fillStyle = '#FFB6C1';
     context.fill();
     // create the image
     var image = new Image();
@@ -323,7 +363,7 @@ var ParticlePool = (function() {
   <div class="center-text",
   style="background-color:rgb(0, 0, 0);
         width: 100%;
-        color: rgb(225, 12, 168);
+        color: #FFB6C1;
         height:100%;
         font-size: 31px;
         font-style: italic;
@@ -331,6 +371,7 @@ var ParticlePool = (function() {
         align-items: center;
         justify-content: center;
         margin-bottom: 5px;
-        text-align: center;">Bùi Phương</div>
+        text-align: center;">Bé Mi</div>
+  
  </BODY>
 </HTML>
